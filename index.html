@@ -26,6 +26,27 @@
                 //inputAutofocus.value="Hola";
             }
         }
+        
+        const isIos = () => {
+    //console.info("data=>",window.navigator.userAgent)
+    return data={"Navegator":window.navigator.userAgent,
+                 "Valor":!!window.navigator.userAgent.match(/iPad|iPhone/i)
+    }
+}
+
+
+console.info("this is Ios:",isIos())
+
+console.info("data",data)
+const {Navegator,Valor}=data
+console.info("Navegator",Navegator)
+console.info("IsIos",Valor)
+if(Valor==false){
+    alert("isIos=False")
+}else{
+    alert("IsIos=True")
+}
+
     </script>
 </body>
 </html>
