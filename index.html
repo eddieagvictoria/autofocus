@@ -57,11 +57,11 @@ const focus = (input) => {
     switch (getFocusType()) {
         case FOCUS_TYPES.REAL:
             console.info("hola case 1");
-            alert("hola case 1")
+            //alert("hola case 1")
             return input.focus()
         case FOCUS_TYPES.FAKE:
                 console.info("hola case 2");
-                alert("hola case 2")
+                //alert("hola case 2")
             input.classList.add('has-focus')
             const onBlur = (input) => {
                 input.classList.remove('has-focus')
