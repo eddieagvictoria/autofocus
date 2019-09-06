@@ -8,10 +8,74 @@
 </head>
 <body>
 
-    <input type="text" id="InputFocus">
+    <input type="text" id="InputFocus" "autofocus">
 
     <script>
-        window.addEventListener("load",autofocus());
+        
+        const isIos = () => !!window.navigator.userAgent.match(/iPad|iPhone/i)
+
+
+/*onsole.info("this is Ios:",isIos())
+
+console.info("data",data)
+const {Navegator,Valor}=data
+console.info("Navegator",Navegator)
+console.info("IsIos",Valor)
+if(Valor==false){
+    alert("isIos=False")
+}else{
+    alert("IsIos=True")
+}
+*/
+const hasInteracted = (() => {
+    let interacted = false;
+    const onTouchStart = ()=>{
+        interacted = true
+        document.removeEventListener(onTouchStart)
+    }
+    document.addEventListener('touchstart', onTouchStart)
+    return () => interacted
+})()
+
+
+const FOCUS_TYPES = {
+    REAL: 'real',
+    FAKE: 'fake'
+}
+const getFocusType = () => (hasInteracted() || !isIos())
+    ? FOCUS_TYPES.REAL
+    : FOCUS_TYPES.FAKE
+
+const focus = (input) => {
+    switch (getFocusType()) {
+        case FOCUS_TYPES.REAL:
+            console.info("hola case 1");
+            alert("hola case 1")
+            return input.focus()
+        case FOCUS_TYPES.FAKE:
+                console.info("hola case 2");
+                alert("hola case 2")
+            input.classList.add('has-focus')
+            const onBlur = (input) => {
+                input.classList.remove('has-focus')
+                document.removeEventListener(onBlur)
+            }
+            input.addEventListener('blur', onBlur)
+            input.scrollIntoView()
+    }
+}
+document.addEventListener('DOMContentLoaded', () => {
+    const autofocusInputs=document.getElementsByTagName("input");
+    const inputElement=autofocusInputs[0]
+    console.info("this is autofocus",inputElement)//.filter((element)=>element.hasAttribute("autofocus"))[0])
+    
+    /*const autofocusedInput = Array.prototype.slice.call(
+            document.querySelectorAll('input')
+        ).filter((el) => el.hasAttribute('autofocus'))[0]
+    console.info("this is autofocusedInput",autofocusedInput)*/
+    focus(inputElement)
+})
+       /* window.addEventListener("load",autofocus());
         function autofocus(){
             var inputAutofocus=document.getElementById("InputFocus");
             if(inputAutofocus===undefined || inputAutofocus===""){
@@ -45,7 +109,7 @@ if(Valor==false){
     alert("isIos=False")
 }else{
     alert("IsIos=True")
-}
+}*/
 
     </script>
 </body>
