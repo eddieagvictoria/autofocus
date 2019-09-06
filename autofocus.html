@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="text" id="InputFocus">
+
+    <script>
+        window.addEventListener("load",autofocus());
+
+        function autofocus(){
+            var inputAutofocus=document.getElementById("InputFocus");
+
+            if(inputAutofocus===undefined || inputAutofocus===""){
+                
+            }else{
+                console.info("Entre y existe");
+                inputAutofocus.focus();
+            }
+
+        }
+    </script>
+</body>
+</html>
